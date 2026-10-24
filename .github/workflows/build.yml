@@ -64,6 +64,8 @@ jobs:
           path: dist/*.vsix
       - run: python scripts/source-bundle.py
         if: matrix.platform == 'linux-x64'
+      - run: python scripts/verify-source.py --build
+        if: matrix.platform == 'linux-x64'
       - uses: actions/upload-artifact@v4
         if: matrix.platform == 'linux-x64'
         with:

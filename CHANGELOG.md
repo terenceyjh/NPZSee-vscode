@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.0 NPZSee for VS Code — 2026-10-24
+
+- Adopted NPZSee / NPZSee-vscode and created an independent public GPL repository.
+- Added an inline Table details panel with exact-value copy and long-text/JSON navigation.
+- Added Chinese, English, French, Spanish, Russian and Arabic, an in-view language selector,
+  persistent preferences, localized commands/errors and Arabic right-to-left layout.
+- Preserved the Rust data and analysis core; removed desktop-only source and dependencies.
+- Added six native OS/CPU builds, platform-specific VSIX checks and matching source bundles.
+- Added synthetic-data listing screenshots, a PNG icon and Marketplace publishing guidance.
+- Kept a temporary local publisher pending account registration; no Marketplace upload.
+
 ## 0.1.0 VS Code local preview — 2026-10-24
 
 - Independent project copied from the desktop version; original desktop tree unchanged.
@@ -13,7 +24,7 @@
 
 ## 0.1.0 — 2026-10-24
 
-- First independently named npzsee release candidate, derived from npyquick.
+- Earlier desktop release preparation, derived from npyquick (historical context).
 - Rust/egui rewrite with background NumPy loading and mapped data access.
 - Array sidebar; Table / Plot / Histogram tabs, with Table selected initially.
 - Hierarchical multidimensional browsing and readable Unicode/JSON metadata.

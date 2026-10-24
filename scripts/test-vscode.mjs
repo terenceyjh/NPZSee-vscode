@@ -20,7 +20,8 @@ let runError;
 // Spawn the executable directly: shell-based launchers split Windows paths with spaces.
 const env={...process.env,NPZSEE_ROOT:root,NPZSEE_UI_TEST:'1'};delete env.ELECTRON_RUN_AS_NODE;
 const installed=process.env.NPZSEE_TEST_INSTALLED==='1';
-const installedDirectory=installed?(await readdir('.vscode-test/extensions')).find(name=>name.startsWith('npzsee-local.npzsee-')):undefined;
+const manifest=JSON.parse(await readFile('package.json','utf8'));
+const installedDirectory=installed?(await readdir('.vscode-test/extensions')).find(name=>name.startsWith(`${manifest.publisher}.${manifest.name}-${manifest.version}`)):undefined;
 if(installed&&!installedDirectory) throw new Error('Install the VSIX into .vscode-test/extensions first.');
 const developmentPath=installed?path.join(root,'.vscode-test/extensions',installedDirectory):root;
 const child=spawn(code,[`--extensionDevelopmentPath=${developmentPath}`,'--disable-extensions',`--extensionTestsPath=${path.join(root,'out/test/vscode.integration.js')}`,'--skip-welcome','--skip-release-notes','--disable-workspace-trust',`--user-data-dir=${path.join(root,'.vscode-test/user')}`,`--extensions-dir=${path.join(root,'.vscode-test/extensions')}`,`--remote-debugging-port=${port}`,'--disable-updates','--new-window'],{env,windowsHide:true,stdio:['ignore','pipe','pipe']});
@@ -81,6 +82,14 @@ try {
   result.installedPackage=installed;
   await writeFile('validation-output/vscode-ui-result.json',JSON.stringify(result,null,2));
   console.log(`Actual VS Code webview: ${result.cases.length} interaction groups passed`);
+} catch(error) {
+  if(browser) for(const context of browser.contexts()) for(const page of context.pages()) {
+    await page.screenshot({path:'validation-output/vscode-ui/failure.png'}).catch(()=>{});
+    for(const frame of page.frames()) if(await frame.locator('#status').count().catch(()=>0)) {
+      console.error('Viewer diagnostic:',JSON.stringify({status:await frame.locator('#status').innerText(),title:await frame.locator('#array-title').innerText(),error:await frame.locator('.error-state').innerText().catch(()=>''),language:await frame.locator('html').getAttribute('lang')}));
+    }
+  }
+  throw error;
 } finally {
   await writeFile('validation-output/vscode-ui-done','done');
   if(!ready) child.kill();

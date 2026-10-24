@@ -51,3 +51,11 @@ python native/validate_numpy.py --recording 'data/your-recording.npz'
 The actual local results and limitations for this iteration are recorded in
 `agent.md`. The CI definition is configuration, not evidence that all platforms
 have already run successfully.
+
+For corresponding-source verification, stage or commit all release sources, then
+run `python scripts/source-bundle.py` and `python scripts/verify-source.py --build`.
+The second command extracts the archive and rebuilds the Rust backend offline
+using vendored dependencies and a separate empty Cargo cache. Node/npm and a
+platform linker remain prerequisites for rebuilding the complete extension.
+Set `NPZSEE_TEST_INSTALLED=1` after installing a VSIX into
+`.vscode-test/extensions` to run the actual VS Code suite against packaged files.

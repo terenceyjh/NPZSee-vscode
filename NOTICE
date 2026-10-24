@@ -22,7 +22,7 @@ packaging, portability fixes, and a separate name. See CHANGELOG.md and agent.md
 The npzview-vscode source copy additionally separates a headless Rust backend
 from VS Code integration and a TypeScript/JavaScript webview. Native data parsing,
 mapped storage, slicing, waveform decimation and statistical computation remain
-in Rust. The VS Code extension is a separate local project and distribution.
+in Rust. The VS Code extension is a separate project and distribution.
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
@@ -32,6 +32,6 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE. See the accompanying LICENSE for details.
 
-Third-party dependencies and fonts retain their own licenses and copyright
+Third-party dependencies and assets retain their own licenses and copyright
 notices. See LICENSES/ and docs/open-source.md. The GPL identifier describes the
 application as a whole; it does not replace those third-party licenses.

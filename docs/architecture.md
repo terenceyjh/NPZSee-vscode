@@ -28,7 +28,9 @@ Each UTF-8 line is one JSON object. Request:
 {"id":1,"method":"table","params":{"array":0,"prefix":[1,2],"start":0,"count":100,"columnStart":0,"columnCount":8}}
 ```
 
-Success: `{"id":1,"result":{...}}`; failure: `{"id":1,"error":"..."}`.
+Success: `{"id":1,"result":{...}}`; failure:
+`{"id":1,"error":"...","code":"INVALID_FILE"}`. Stable error codes select localized
+messages; original errors remain available in expandable technical details.
 Only stdout contains protocol data. Requests are limited to 64 KiB and unknown
 fields/methods are rejected. Bounds are validated before accessing slice functions.
 
