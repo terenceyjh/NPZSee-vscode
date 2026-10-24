@@ -1,0 +1,7 @@
+{
+  "extension.description": "Быстрый просмотр многомерных массивов NumPy на Rust.",
+  "command.open": "NPZSee: Открыть файл NumPy",
+  "command.reload": "NPZSee: Перезагрузить файл",
+  "language.description": "Язык интерфейса. Автоматический режим использует язык VS Code.",
+  "filesystem.description": "Модулю данных нужна реальная файловая система."
+}

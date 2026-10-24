@@ -1,0 +1,7 @@
+{
+  "extension.description": "Visionneuse rapide de tableaux NumPy multidimensionnels, propulsée par Rust.",
+  "command.open": "NPZSee: Ouvrir un fichier NumPy",
+  "command.reload": "NPZSee: Recharger le fichier",
+  "language.description": "Langue de l’interface. Automatique suit la langue de VS Code.",
+  "filesystem.description": "Le moteur de données exige un système de fichiers réel."
+}

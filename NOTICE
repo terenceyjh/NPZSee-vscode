@@ -1,0 +1,37 @@
+NPZSee for VS Code 0.2.0
+SPDX-License-Identifier: GPL-3.0-or-later
+
+NPZSee-vscode is the independently maintained VS Code continuation of the
+npzview Rust rewrite and its initial VS Code prototype. It retains the Rust data
+core and adds general multidimensional-array copy, inline Table details, six
+interface languages, Arabic RTL and VS Code distribution/release workflows.
+
+npzview is an independently named Rust rewrite derived from and inspired by
+npyquick. It is a continuation of that project's array-viewing concepts and
+behavior, rather than a claim that all design and provenance are unrelated.
+
+Upstream: https://github.com/LiukDiihMieu/npyquick
+Upstream base commit: 6be16fd (2026 source snapshot).
+Upstream copyright: Copyright (C) 2026 LiukDiihMieu.
+Rust rewrite and modifications: Copyright (C) 2026 npzview contributors.
+
+Modifications include native Rust data loading and rendering, background jobs,
+array sidebar, table-first hierarchy and JSON navigation, histogram area fill,
+packaging, portability fixes, and a separate name. See CHANGELOG.md and agent.md.
+
+The npzview-vscode source copy additionally separates a headless Rust backend
+from VS Code integration and a TypeScript/JavaScript webview. Native data parsing,
+mapped storage, slicing, waveform decimation and statistical computation remain
+in Rust. The VS Code extension is a separate local project and distribution.
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the accompanying LICENSE for details.
+
+Third-party dependencies and fonts retain their own licenses and copyright
+notices. See LICENSES/ and docs/open-source.md. The GPL identifier describes the
+application as a whole; it does not replace those third-party licenses.

@@ -1,0 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+import {chromium} from 'playwright';
+import {mkdir,writeFile} from 'node:fs/promises';
+const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect x="4" y="4" width="248" height="248" rx="48" fill="#132337"/><g fill="#47a9e7"><rect x="48" y="50" width="38" height="38" rx="7"/><rect x="109" y="50" width="38" height="38" rx="7" opacity=".6"/><rect x="170" y="50" width="38" height="38" rx="7" opacity=".35"/><rect x="48" y="109" width="38" height="38" rx="7" opacity=".6"/><rect x="48" y="168" width="38" height="38" rx="7" opacity=".35"/></g><path d="M93 165 Q151 99 215 165 Q153 228 93 165Z" fill="none" stroke="#e3f4ff" stroke-width="12" stroke-linejoin="round"/><circle cx="154" cy="165" r="23" fill="#47a9e7"/><circle cx="161" cy="157" r="7" fill="#e3f4ff"/></svg>`;
+await mkdir('assets',{recursive:true});await writeFile('assets/icon.svg',svg);
+const browser=await chromium.launch({headless:true});
+try {const page=await browser.newPage({viewport:{width:256,height:256},deviceScaleFactor:1});await page.setContent(`<style>body{margin:0}svg{display:block;width:256px;height:256px}</style>${svg}`);await page.screenshot({path:'assets/icon.png',omitBackground:true});} finally {await browser.close();}

@@ -1,0 +1,7 @@
+{
+  "extension.description": "由 Rust 驱动的快速多维 NumPy 数组查看器。",
+  "command.open": "NPZSee: 打开 NumPy 文件",
+  "command.reload": "NPZSee: 重新加载文件",
+  "language.description": "界面语言，自动选项跟随 VS Code 显示语言。",
+  "filesystem.description": "数据引擎需要真实文件系统。"
+}

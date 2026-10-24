@@ -1,0 +1,150 @@
+{
+  "name": "npzsee",
+  "displayName": "NPZSee",
+  "description": "%extension.description%",
+  "version": "0.2.0",
+  "publisher": "npzsee-local",
+  "private": true,
+  "license": "GPL-3.0-or-later",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Visualization",
+    "Data Science"
+  ],
+  "keywords": [
+    "numpy",
+    "npy",
+    "npz",
+    "multidimensional",
+    "array",
+    "viewer",
+    "rust",
+    "visualization"
+  ],
+  "extensionKind": [
+    "workspace"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onCustomEditor:npzsee.viewer"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": {
+      "supported": false,
+      "description": "%filesystem.description%"
+    }
+  },
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "npzsee.viewer",
+        "displayName": "NPZSee",
+        "selector": [
+          {
+            "filenamePattern": "*.npy"
+          },
+          {
+            "filenamePattern": "*.npz"
+          },
+          {
+            "filenamePattern": "*.NPY"
+          },
+          {
+            "filenamePattern": "*.NPZ"
+          }
+        ],
+        "priority": "default"
+      }
+    ],
+    "commands": [
+      {
+        "command": "npzsee.open",
+        "title": "%command.open%"
+      },
+      {
+        "command": "npzsee.reload",
+        "title": "%command.reload%",
+        "icon": "$(refresh)"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "npzsee.open",
+          "when": "resourceExtname =~ /\\.(npy|npz)$/i",
+          "group": "navigation"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "npzsee.reload",
+          "when": "activeCustomEditorId == 'npzsee.viewer'",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "NPZSee",
+      "properties": {
+        "npzsee.language": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "zh-CN",
+            "en",
+            "fr",
+            "es",
+            "ru",
+            "ar"
+          ],
+          "default": "auto",
+          "scope": "window",
+          "description": "%language.description%"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node scripts/localize-manifest.mjs && node scripts/build.mjs",
+    "build:backend": "node scripts/build-backend.mjs",
+    "check": "tsc --noEmit",
+    "test": "node --test tests/backend.test.mjs",
+    "test:ui": "node tests/ui.test.mjs",
+    "test:vscode": "node scripts/test-vscode.mjs",
+    "package:local": "node scripts/package.mjs",
+    "vscode:prepublish": "npm run build",
+    "test:i18n": "node --test tests/i18n.test.mjs",
+    "check:release": "python scripts/check-vsix.py",
+    "configure:publisher": "node scripts/configure-publisher.mjs",
+    "marketplace:check": "node scripts/marketplace-check.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.96.0",
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.6.0",
+    "esbuild": "^0.25.0",
+    "playwright": "^1.56.0",
+    "typescript": "^5.9.0"
+  },
+  "preview": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/terenceyjh/NPZSee-vscode.git"
+  },
+  "homepage": "https://github.com/terenceyjh/NPZSee-vscode#readme",
+  "bugs": {
+    "url": "https://github.com/terenceyjh/NPZSee-vscode/issues"
+  },
+  "icon": "assets/icon.png",
+  "galleryBanner": {
+    "color": "#132337",
+    "theme": "dark"
+  },
+  "pricing": "Free"
+}

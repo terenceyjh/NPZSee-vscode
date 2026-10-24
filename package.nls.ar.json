@@ -1,0 +1,7 @@
+{
+  "extension.description": "عارض سريع لمصفوفات NumPy متعددة الأبعاد يعمل بمحرك Rust.",
+  "command.open": "NPZSee: فتح ملف NumPy",
+  "command.reload": "NPZSee: إعادة تحميل الملف",
+  "language.description": "لغة الواجهة. يتبع الوضع التلقائي لغة عرض VS Code.",
+  "filesystem.description": "يتطلب محرك البيانات نظام ملفات حقيقيًا."
+}

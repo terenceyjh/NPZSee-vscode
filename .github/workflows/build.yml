@@ -1,0 +1,91 @@
+name: Build and verify VSIX packages
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: windows-2022, target: x86_64-pc-windows-msvc, platform: win32-x64 }
+          - { os: windows-11-arm, target: aarch64-pc-windows-msvc, platform: win32-arm64 }
+          - { os: ubuntu-22.04, target: x86_64-unknown-linux-gnu, platform: linux-x64 }
+          - { os: ubuntu-24.04-arm, target: aarch64-unknown-linux-gnu, platform: linux-arm64 }
+          - { os: macos-15-intel, target: x86_64-apple-darwin, platform: darwin-x64 }
+          - { os: macos-15, target: aarch64-apple-darwin, platform: darwin-arm64 }
+    runs-on: ${{ matrix.os }}
+    env:
+      MACOSX_DEPLOYMENT_TARGET: '13.0'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: '1.96.0'
+          components: clippy,rustfmt
+      - uses: Swatinem/rust-cache@v2
+      - run: npm ci
+      - run: python -m pip install numpy
+      - run: python -m pip install cargo-zigbuild==0.24.0 ziglang==0.16.0
+        if: runner.os == 'Linux'
+      - run: cargo fmt --check
+      - run: cargo clippy --locked --all-targets -- -D warnings
+      - run: cargo test --locked
+      - run: npm run build:backend
+        env:
+          NPZSEE_TARGET: ${{ matrix.target }}
+          NPZSEE_ZIG: ${{ runner.os == 'Linux' && '1' || '0' }}
+      - run: npm run check
+      - run: npm run build
+      - run: npm test
+      - run: npm run test:i18n
+      - run: cargo build --release --locked --features bench --bin npzsee-bench
+      - run: python native/validate_numpy.py
+      - run: npx playwright install chromium
+        if: matrix.platform == 'win32-x64'
+      - run: npm run test:ui
+        if: matrix.platform == 'win32-x64'
+      - run: npm run package:local
+      - run: npm run check:release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: NPZSee-vscode-${{ matrix.platform }}
+          path: dist/*.vsix
+      - run: python scripts/source-bundle.py
+        if: matrix.platform == 'linux-x64'
+      - uses: actions/upload-artifact@v4
+        if: matrix.platform == 'linux-x64'
+        with:
+          name: NPZSee-vscode-source
+          path: dist/*source.tar.gz
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - name: Checksums
+        run: cd dist && sha256sum *.vsix *source.tar.gz > SHA256SUMS
+      - uses: softprops/action-gh-release@v2
+        with:
+          prerelease: true
+          name: NPZSee for VS Code ${{ github.ref_name }}
+          body_path: docs/release-notes.md
+          files: dist/*

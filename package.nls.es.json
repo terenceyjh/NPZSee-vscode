@@ -1,0 +1,7 @@
+{
+  "extension.description": "Visor rápido de matrices NumPy multidimensionales, impulsado por Rust.",
+  "command.open": "NPZSee: Abrir archivo NumPy",
+  "command.reload": "NPZSee: Recargar archivo",
+  "language.description": "Idioma de la interfaz. Automático sigue el idioma de VS Code.",
+  "filesystem.description": "El motor de datos requiere un sistema de archivos real."
+}

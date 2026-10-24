@@ -1,0 +1,7 @@
+{
+  "extension.description": "Fast multidimensional NumPy array viewer, powered by Rust.",
+  "command.open": "NPZSee: Open NumPy File",
+  "command.reload": "NPZSee: Reload File",
+  "language.description": "Interface language. Auto follows the VS Code display language.",
+  "filesystem.description": "A real filesystem is required by the data engine."
+}
