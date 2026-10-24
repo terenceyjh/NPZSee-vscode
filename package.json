@@ -2,8 +2,8 @@
   "name": "npzsee",
   "displayName": "NPZSee",
   "description": "%extension.description%",
-  "version": "0.2.0",
-  "publisher": "npzsee-local",
+  "version": "0.2.1",
+  "publisher": "TerenceYang",
   "private": true,
   "license": "GPL-3.0-or-later",
   "engines": {

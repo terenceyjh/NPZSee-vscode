@@ -2,13 +2,14 @@
 import * as vscode from 'vscode';
 import * as assert from 'node:assert/strict';
 import * as path from 'node:path';
-import { writeFile, access, readdir } from 'node:fs/promises';
+import { writeFile, readFile, access, readdir } from 'node:fs/promises';
 const delay = (ms: number) => new Promise(resolve=>setTimeout(resolve,ms));
 export async function run() {
   const root = process.env.NPZSEE_ROOT!;
   await vscode.workspace.getConfiguration('npzsee').update('language','en',vscode.ConfigurationTarget.Global);
   const clipboard = await vscode.env.clipboard.readText();
-  const extension=vscode.extensions.getExtension('npzsee-local.npzsee');
+  const manifest=JSON.parse(await readFile(path.join(root,'package.json'),'utf8'));
+  const extension=vscode.extensions.getExtension(`${manifest.publisher}.${manifest.name}`.toLowerCase());
   assert.ok(extension);const api=await extension.activate();
   await vscode.commands.executeCommand('vscode.openWith',vscode.Uri.file(path.join(root,'validation-output','extension-fixtures.npz')),'npzsee.viewer');
   assert.ok(vscode.window.tabGroups.all.flatMap(g=>g.tabs).some(tab=>tab.input instanceof vscode.TabInputCustom&&tab.input.viewType==='npzsee.viewer'));

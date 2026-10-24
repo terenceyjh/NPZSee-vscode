@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.1 NPZSee for VS Code — 2026-10-24
+
+- Set the registered Marketplace publisher to TerenceYang; extension ID is TerenceYang.npzsee.
+- Publish a regular GitHub Release with directly installable VSIX files for all six targets.
+- Add explicit download and install instructions, plus the next steps for first Marketplace upload.
+- Keep the Rust core and viewer behavior unchanged from 0.2.0.
+
 ## 0.2.0 NPZSee for VS Code — 2026-10-24
 
 - Adopted NPZSee / NPZSee-vscode and created an independent public GPL repository.

@@ -57,20 +57,31 @@ Performance depends on storage, compression, data type and hardware.
 ## Installation
 
 Marketplace publication is being prepared. For now, download the VSIX matching
-your system from [GitHub Releases](https://github.com/terenceyjh/NPZSee-vscode/releases).
+your system from [GitHub Releases](https://github.com/terenceyjh/NPZSee-vscode/releases/latest).
+For a typical Windows Intel/AMD PC, [download the Windows x64 VSIX](https://github.com/terenceyjh/NPZSee-vscode/releases/download/v0.2.1/NPZSee-vscode-0.2.1-win32-x64.vsix).
 
 1. In VS Code, open Extensions → **… → Install from VSIX…**.
 2. Select the downloaded package and open a `.npy` or `.npz` file.
 3. If another editor is selected, use **Reopen Editor With… → NPZSee**.
+
+Download a `.vsix` asset, keep its extension and install it directly; do not unzip
+it or choose GitHub's automatically generated "Source code" downloads.
+
+| System | x64 | ARM64 |
+| --- | --- | --- |
+| Windows | [VSIX](https://github.com/terenceyjh/NPZSee-vscode/releases/download/v0.2.1/NPZSee-vscode-0.2.1-win32-x64.vsix) | [VSIX](https://github.com/terenceyjh/NPZSee-vscode/releases/download/v0.2.1/NPZSee-vscode-0.2.1-win32-arm64.vsix) |
+| Linux | [VSIX](https://github.com/terenceyjh/NPZSee-vscode/releases/download/v0.2.1/NPZSee-vscode-0.2.1-linux-x64.vsix) | [VSIX](https://github.com/terenceyjh/NPZSee-vscode/releases/download/v0.2.1/NPZSee-vscode-0.2.1-linux-arm64.vsix) |
+| macOS | [VSIX](https://github.com/terenceyjh/NPZSee-vscode/releases/download/v0.2.1/NPZSee-vscode-0.2.1-darwin-x64.vsix) | [VSIX](https://github.com/terenceyjh/NPZSee-vscode/releases/download/v0.2.1/NPZSee-vscode-0.2.1-darwin-arm64.vsix) |
 
 Available target names: `win32-x64`, `win32-arm64`, `linux-x64`, `linux-arm64`,
 `darwin-x64` and `darwin-arm64`. These are **64-bit** architectures. For SSH, WSL or
 containers, install the package matching the remote extension host.
 See [platform requirements and validation boundaries](docs/cross-platform.md).
 
-The pre-Marketplace packages use the temporary publisher `npzsee-local`. A final
-publisher ID will be selected before the store release; it is separate from the
-project name NPZSee and repository name NPZSee-vscode.
+From 0.2.1, packages use the registered publisher `TerenceYang` and extension ID
+`TerenceYang.npzsee`. Uninstall the older `npzsee-local.npzsee` or
+`npzview-local.npzview` test extension when migrating to avoid duplicate viewers.
+Publisher registration is complete; Marketplace upload is still a separate step.
 
 ## Data support and boundaries
 
@@ -106,7 +117,7 @@ npm run package:local
 Press F5 in this repository to launch a development window. For browser and real
 VS Code interaction tests, see [testing](docs/testing.md). The CI workflow builds
 and tests six native packages, and release tags attach VSIX files, checksums and
-matching Rust dependency sources to a GitHub prerelease.
+matching Rust dependency sources to a GitHub Release.
 
 The release process for this project is **VSIX + Visual Studio Marketplace**.
 The separate [desktop project](https://github.com/terenceyjh/npzsee) provides

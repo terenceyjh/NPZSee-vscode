@@ -50,3 +50,15 @@ The desktop version is being handled independently and was not edited.
 - Public source: https://github.com/terenceyjh/NPZSee-vscode. Private vulnerability
   reporting is enabled. No Marketplace upload has been performed; final publisher
   identity and rebuilding store packages remain dependent on user registration.
+
+## 2026-10-24 — registered publisher and installable Release
+
+The user's Marketplace screenshot shows publisher Jinghao Yang (TerenceYang),
+with Owner access. Configured `TerenceYang.npzsee`, bumped package/core versions
+to 0.2.1 and switched tagged GitHub builds to a regular Release. Added direct
+six-platform download links and explicit Install from VSIX instructions. The
+Marketplace guide now starts at New extension → Visual Studio Code. No account
+credentials are required for packaging, and no Marketplace upload was performed.
+The data engine and viewer behavior are unchanged from the tested 0.2.0 version.
+Integration tooling now resolves the extension identity from the manifest and
+handles VS Code's lower-cased installation folder names.

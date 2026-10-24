@@ -3,8 +3,8 @@
 NPZSee-vscode 是从 npzview 的 Rust 重写版及 VS Code 原型发展出的独立项目，桌面版
 单独维护。公开仓库为 https://github.com/terenceyjh/NPZSee-vscode。
 上游为 LiukDiihMieu/npyquick；原始版权、GPL-3.0-or-later 及修改说明保留在
-`LICENSE`、`NOTICE` 和 `CHANGELOG.md`。产品名确定为 NPZSee，Marketplace publisher
-仍待用户注册；GitHub 预览包使用 `npzsee-local`，尚未上传插件商店。
+`LICENSE`、`NOTICE` 和 `CHANGELOG.md`。产品名为 NPZSee，Marketplace publisher
+已注册为 `TerenceYang`；0.2.1 使用正式 ID，尚未向插件商店上传。
 
 本地 VSIX 包含无界面 Rust 后端、界面与许可证文本。私有实验记录、prompt、构建缓存、
 测试用户配置和工具链不进入包中。开发用的 TypeScript/打包/测试依赖不作为运行时 npm

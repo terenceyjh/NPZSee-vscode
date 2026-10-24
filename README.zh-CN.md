@@ -33,16 +33,26 @@ NPZSee 是通用的 `.npy` / `.npz` 只读查看器。无需另写脚本，即�
 
 ## 安装
 
-在 [GitHub Releases](https://github.com/terenceyjh/NPZSee-vscode/releases) 下载对应平台的
+在 [GitHub Releases](https://github.com/terenceyjh/NPZSee-vscode/releases/latest) 下载对应平台的
 VSIX，在 VS Code 扩展面板选择 **⋯ → 从 VSIX 安装…**。打开 NumPy 文件即可；
 若被其他编辑器接管，可选择 **重新打开编辑器的方式… → NPZSee**。
+
+普通 Intel/AMD Windows 电脑可[直接下载 Windows x64 安装包](https://github.com/terenceyjh/NPZSee-vscode/releases/download/v0.2.1/NPZSee-vscode-0.2.1-win32-x64.vsix)。
+下载 `.vsix` 后直接安装，无需解压；GitHub 的 `Source code` 下载项是源码，不是插件安装包。
+
+| 系统 | x64 | ARM64 |
+| --- | --- | --- |
+| Windows | [安装包](https://github.com/terenceyjh/NPZSee-vscode/releases/download/v0.2.1/NPZSee-vscode-0.2.1-win32-x64.vsix) | [安装包](https://github.com/terenceyjh/NPZSee-vscode/releases/download/v0.2.1/NPZSee-vscode-0.2.1-win32-arm64.vsix) |
+| Linux | [安装包](https://github.com/terenceyjh/NPZSee-vscode/releases/download/v0.2.1/NPZSee-vscode-0.2.1-linux-x64.vsix) | [安装包](https://github.com/terenceyjh/NPZSee-vscode/releases/download/v0.2.1/NPZSee-vscode-0.2.1-linux-arm64.vsix) |
+| macOS | [安装包](https://github.com/terenceyjh/NPZSee-vscode/releases/download/v0.2.1/NPZSee-vscode-0.2.1-darwin-x64.vsix) | [安装包](https://github.com/terenceyjh/NPZSee-vscode/releases/download/v0.2.1/NPZSee-vscode-0.2.1-darwin-arm64.vsix) |
 
 目标平台为 Windows / Linux / macOS × x86_64 / ARM64，共六种 64 位组合。
 WSL、SSH 和容器中的扩展要匹配远程主机的平台。平台要求和实际验证边界见
 [跨平台说明](docs/cross-platform.md)。
 
-目前安装包使用临时 publisher `npzsee-local`，尚未上传插件市场。
-注册最终发布者后，再按[发布指南](docs/publishing.md)更新 ID、重建并上传。
+从 0.2.1 起，安装包使用正式 publisher `TerenceYang`，完整扩展 ID 为 `TerenceYang.npzsee`。
+迁移时卸载旧的 `npzsee-local.npzsee` 或 `npzview-local.npzview`，避免出现两个查看器。
+发布者已注册；插件市场上传步骤见[发布指南](docs/publishing.md)。
 `NPZSee` 是显示名称，`NPZSee-vscode` 是仓库名称，Marketplace 发布者 ID 是独立字段。
 
 ## 开发与验证

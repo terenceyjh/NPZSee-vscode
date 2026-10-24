@@ -21,7 +21,7 @@ let runError;
 const env={...process.env,NPZSEE_ROOT:root,NPZSEE_UI_TEST:'1'};delete env.ELECTRON_RUN_AS_NODE;
 const installed=process.env.NPZSEE_TEST_INSTALLED==='1';
 const manifest=JSON.parse(await readFile('package.json','utf8'));
-const installedDirectory=installed?(await readdir('.vscode-test/extensions')).find(name=>name.startsWith(`${manifest.publisher}.${manifest.name}-${manifest.version}`)):undefined;
+const installedDirectory=installed?(await readdir('.vscode-test/extensions')).find(name=>name.toLowerCase().startsWith(`${manifest.publisher}.${manifest.name}-${manifest.version}`.toLowerCase())):undefined;
 if(installed&&!installedDirectory) throw new Error('Install the VSIX into .vscode-test/extensions first.');
 const developmentPath=installed?path.join(root,'.vscode-test/extensions',installedDirectory):root;
 const child=spawn(code,[`--extensionDevelopmentPath=${developmentPath}`,'--disable-extensions',`--extensionTestsPath=${path.join(root,'out/test/vscode.integration.js')}`,'--skip-welcome','--skip-release-notes','--disable-workspace-trust',`--user-data-dir=${path.join(root,'.vscode-test/user')}`,`--extensions-dir=${path.join(root,'.vscode-test/extensions')}`,`--remote-debugging-port=${port}`,'--disable-updates','--new-window'],{env,windowsHide:true,stdio:['ignore','pipe','pipe']});
