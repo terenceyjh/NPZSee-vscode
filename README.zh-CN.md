@@ -6,7 +6,10 @@ NPZSee 是通用的 `.npy` / `.npz` 只读查看器。无需另写脚本，即�
 精确数值、字符串、JSON、波形与直方图。Rust 负责解析、解压、映射、切片、缓存、
 抽稀与统计，TypeScript / JavaScript 负责 VS Code 集成和界面。
 
-[English](README.md) · [发布指南](docs/publishing.md) · [适用于插件的 roadmap](docs/roadmap.md)
+[English](README.md) · [独立桌面版](https://github.com/terenceyjh/npzsee) · [发布指南](docs/publishing.md) · [适用于插件的 roadmap](docs/roadmap.md)
+
+本仓库提供 **VS Code 插件版**。如果你希望无需 VS Code、直接运行独立程序，可以使用
+配套的 **[NPZSee 桌面版](https://github.com/terenceyjh/npzsee)**，支持 Windows、macOS 和 Linux。
 
 ## 主要功能
 
@@ -56,7 +59,8 @@ npm run package:local
 
 Rust 1.96+、Node.js 22+ 和对应平台链接器用于构建；Python/NumPy 仅用于测试。
 [完整测试说明](docs/testing.md)包含实际 VS Code 窗口中的交互检查。
-桌面版由另一个独立项目维护，本仓库的分发流程为 VSIX 和插件市场。
+[桌面版项目](https://github.com/terenceyjh/npzsee)提供独立程序和 Python wheel 安装包；
+本仓库的分发流程为 VSIX 和插件市场。
 
 ## 来源与许可证
 

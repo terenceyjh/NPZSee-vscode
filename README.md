@@ -7,7 +7,11 @@ arrays, inspect exact values and metadata, and explore plots without writing a
 Python script. A **Rust data engine** handles parsing, mapped storage, slicing and
 statistics; the editor interface receives only the data it needs to display.
 
-[简体中文](README.zh-CN.md) · [Installation](#installation) · [Building](#building) · [Marketplace preparation](docs/publishing.md)
+[简体中文](README.zh-CN.md) · [Installation](#installation) · [Desktop edition](https://github.com/terenceyjh/npzsee) · [Building](#building) · [Marketplace preparation](docs/publishing.md)
+
+This repository provides the **VS Code extension edition**. For a standalone app
+that runs without VS Code on Windows, macOS and Linux, use the companion
+**[NPZSee desktop edition](https://github.com/terenceyjh/npzsee)**.
 
 ![Exact values and an inline details panel](assets/screenshots/table-details.png)
 
@@ -105,7 +109,8 @@ and tests six native packages, and release tags attach VSIX files, checksums and
 matching Rust dependency sources to a GitHub prerelease.
 
 The release process for this project is **VSIX + Visual Studio Marketplace**.
-The separate desktop project's executable/PyPI distribution is maintained elsewhere.
+The separate [desktop project](https://github.com/terenceyjh/npzsee) provides
+standalone executables and Python wheels.
 
 ## License and credit
 
